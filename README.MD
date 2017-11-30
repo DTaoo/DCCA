@@ -17,7 +17,7 @@ and all the former ones can be other activation function, e.g., ReLu.
 
 ## Acknowledgement:
 
-Thanks Vahid for providing the DCCA implementation in Keras-theano and the constructive advices.
+Thanks Vahid for providing the DCCA implementation in Keras-theano and the constructive advises.
 
 ## Reference:
 
