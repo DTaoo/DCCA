@@ -70,19 +70,17 @@ class CCA(Layer):
         D1_indices = tf.where(D1 > eps)
         D1_indices = tf.squeeze(D1_indices)
         V1 = tf.gather(V1, D1_indices)
+        V1 = tf.gather(V1, D1_indices, axis=1)
         D1 = tf.gather(D1, D1_indices)
 
         D2_indices = tf.where(D2 > eps)
         D2_indices = tf.squeeze(D2_indices)
         V2 = tf.gather(V2, D2_indices)
+        V2 = tf.gather(V2, D2_indices, axis=1)
         D2 = tf.gather(D2, D2_indices)
 
-        # Square up
-        size1 = tf.shape(D1)[0]
-        size2 = tf.shape(D2)[0]
-        V1 = V1[:,:size1]
-        V2 = V2[:,:size1]
-        SigmaHat12 = [:size1, :size2]
+        SigmaHat12 = tf.gather(SigmaHat12, D1_indices)
+        SigmaHat12 = tf.gather(SigmaHat12, D2_indices, axis=1)
 
         pow_value = tf.constant([-0.5])
         SigmaHat11RootInv = tf.matmul(tf.matmul(V1, tf.diag(tf.pow(D1, pow_value))), tf.transpose(V1))
