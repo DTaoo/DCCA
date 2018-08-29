@@ -77,6 +77,13 @@ class CCA(Layer):
         V2 = tf.gather(V2, D2_indices)
         D2 = tf.gather(D2, D2_indices)
 
+        # Square up
+        size1 = tf.shape(D1)[0]
+        size2 = tf.shape(D2)[0]
+        V1 = V1[:,:size1]
+        V2 = V2[:,:size1]
+        SigmaHat12 = [:size1, :size2]
+
         pow_value = tf.constant([-0.5])
         SigmaHat11RootInv = tf.matmul(tf.matmul(V1, tf.diag(tf.pow(D1, pow_value))), tf.transpose(V1))
         SigmaHat22RootInv = tf.matmul(tf.matmul(V2, tf.diag(tf.pow(D2, pow_value))), tf.transpose(V2))
