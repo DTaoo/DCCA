@@ -69,12 +69,12 @@ class CCA(Layer):
         # for stability
         D1_indices = tf.where(D1 > eps)
         D1_indices = tf.squeeze(D1_indices)
-        V1 = tf.gather(V1, D1_indices)
+        V1 = tf.gather(V1, D1_indices, axis=1)
         D1 = tf.gather(D1, D1_indices)
 
         D2_indices = tf.where(D2 > eps)
         D2_indices = tf.squeeze(D2_indices)
-        V2 = tf.gather(V2, D2_indices)
+        V2 = tf.gather(V2, D2_indices, axis=1)
         D2 = tf.gather(D2, D2_indices)
 
         pow_value = tf.constant([-0.5])
